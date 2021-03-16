@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css"/>
+    <style>
+        .contentText {
+            margin-left: 15%;
+            margin-right: 15%;
+            margin-bottom: 15%;
+            padding: 50px 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="contentText">
+    <h1 style="text-align: center">Weather app</h1>
+    <br>
+    <div class="mb-3">
+        <form action="/" method="get">
+            <label for="city" class="form-label">City:</label>
+            <input type="text" name="city" id="city">
+            <input type="submit" value="Search!" class="btn btn-primary">
+        </form>
+    </div>
+
+    <div th:if="${weather != null}">
+        <table class="table  mt-4">
+            <thead>
+            <tr style="text-align: center">
+                <th>City</th>
+                <th>Temperature (°C)</th>
+                <th>Perceived temperature (°C)</th>
+                <th>Temperature min (°C)</th>
+                <th>Temperature max (°C)</th>
+                <th>Pressure (hPh)</th>
+                <th>Humidity (%)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:object="${weather}" style="text-align: center">
+                <td th:text="${weather.city}"></td>
+                <td th:text="${weather.temperature}"></td>
+                <td th:text="${weather.temp_felt}"></td>
+                <td th:text="${weather.temp_min}"></td>
+                <td th:text="${weather.temp_max}"></td>
+                <td th:text="${weather.pressure}"></td>
+                <td th:text="${weather.humidity}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
